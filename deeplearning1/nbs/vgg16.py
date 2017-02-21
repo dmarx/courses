@@ -78,8 +78,11 @@ class Vgg16():
         self.FCBlock()
         model.add(Dense(1000, activation='softmax'))
 
-        fname = 'vgg16.h5'
-        model.load_weights(get_file(fname, self.FILE_PATH+fname, cache_subdir='models'))
+        TH_WEIGHTS_PATH = 'https://github.com/fchollet/deep-learning-models/releases/download/v0.1/vgg16_weights_th_dim_ordering_th_kernels.h5'
+        weights_path = get_file('vgg16_weights_th_dim_ordering_th_kernels.h5',
+                                        TH_WEIGHTS_PATH,
+                                        cache_subdir='models')
+        model.load_weights(weights_path)
 
 
     def get_batches(self, path, gen=image.ImageDataGenerator(), shuffle=True, batch_size=8, class_mode='categorical'):
